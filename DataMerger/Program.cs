@@ -15,7 +15,8 @@ namespace DataMerger
             string mainPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
             DeserializeJSON deserializeJSON = new DeserializeJSON();
             deserializeJSON.DeserializeUsersFromXML(mainPath);
-            var usersCsv = DeserializeCSV.DeserializeUsersFromCSV(mainPath);
+            DeserializeCSV deserializeCSV = new DeserializeCSV();
+            deserializeCSV.DeserializeUsersFromCSV(mainPath);
 
             Console.ReadKey();
         }

@@ -29,7 +29,7 @@ namespace DataMerger.Models
                         Last_name = users[i];
                         break;
                     case 4:
-                        Email = users[i];
+                        Email = EmailValidation(users[i]);
                         break;
                     case 5:
                         Gender = users[i];
@@ -46,9 +46,8 @@ namespace DataMerger.Models
         //Check email format
         private string EmailValidation(string email)
         {
-            bool isCorrect = Regex.IsMatch(email, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+
-                (?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])
-                ?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
+            string pattern = @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+            bool isCorrect = Regex.IsMatch(email, pattern, RegexOptions.IgnoreCase);
 
             if (!isCorrect)
                 email = "";

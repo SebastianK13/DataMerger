@@ -39,16 +39,17 @@ namespace DataMerger.Services
         public void RemoveDuplicatesAndEmpties(List<XmlUser> xmlUsers)
         {
             List<XmlUser> uniqueUsers = new List<XmlUser>();
-            foreach(var u in xmlUsers)
+
+            IncorrectData = xmlUsers
+                .Where(p => p.Phones
+                .Any(n => n.PhoneNumber == ""))
+                .ToList();
+
+            foreach (var u in xmlUsers)
             {
                 var duplicates = xmlUsers.Where(n => (n.Username == u.Username) &&
                 (!uniqueUsers.Any(e=>e.Username == u.Username))&&
                 (n.Phones.Any(p=>p.PhoneNumber != "")))
-                    .ToList();
-
-                IncorrectData = xmlUsers
-                    .Where(p => p.Phones
-                    .Any(n => n.PhoneNumber == ""))
                     .ToList();
 
                 if(duplicates.Count() > 0)
