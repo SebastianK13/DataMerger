@@ -11,10 +11,6 @@ namespace DataMerger.Models
     public class XmlUser
     {
         public XmlUser() { }
-        //public XmlUser(List<XElement> accountAttributes)
-        //{
-        //    InsertUserToRepo(accountAttributes);
-        //}
 
         public string Id { get; set; }
         public string Username { get; set; }
