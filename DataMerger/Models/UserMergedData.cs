@@ -12,5 +12,12 @@ namespace DataMerger.Models
         {
 
         }
+
+        public string Encode(string id)
+        {
+            Guid guid = new Guid(id);
+            string encodedGuid = Convert.ToBase64String(guid.ToByteArray());
+            return encodedGuid;
+        }
     }
 }
