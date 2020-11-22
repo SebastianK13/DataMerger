@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
@@ -51,10 +52,21 @@ namespace DataMerger.Models
         {
             get
             {
-                return Properties.Where(i => i.Name == "value").FirstOrDefault().Value;
+                var number = Properties.Where(i => i.Name == "value").FirstOrDefault().Value;
+                return FormatPhoneNumber(number);               
             }
         }
+        public string FormatPhoneNumber(string number)
+        {
+            string formatedPhNumber = number;
+            number = Regex.Replace(number, @"[^0-9]+", "");
 
+            if (!String.IsNullOrEmpty(number) && number.Length == 10)
+            {
+                formatedPhNumber = number.Substring(0, 3) + " " + number.Substring(3, 3) + " " + number.Substring(6, 4);
+            }
+            return formatedPhNumber;
+        }
     }
     public class Property
     {

@@ -43,8 +43,8 @@ namespace DataMerger
             }
 
             //Implement in DeserializeXML
-            //ObjectList objectList = new ObjectList();
-            //objectList.DeserializeXML(mainPath);
+            ObjectList objectList = new ObjectList();
+            objectList.DeserializeXML(mainPath);
 
             Console.ReadKey();
         }
