@@ -42,6 +42,10 @@ namespace DataMerger
                 Console.WriteLine("Operation failed, wrong path, file or files doesn't exist in the directory which was pointed");
             }
 
+            //Implement in DeserializeXML
+            //ObjectList objectList = new ObjectList();
+            //objectList.DeserializeXML(mainPath);
+
             Console.ReadKey();
         }
     }

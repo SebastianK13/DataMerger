@@ -49,6 +49,7 @@
     <Compile Include="Models\CsvUser.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\UserMergedData.cs" />
+    <Compile Include="Models\XmlClass.cs" />
     <Compile Include="Models\XmlUser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
