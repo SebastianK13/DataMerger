@@ -76,13 +76,14 @@ namespace DataMerger.Services
                 }
             }
 
+            //else if (isDateCorrect && currentUserDate.Date < minDate.Date)
+            //{
+            //    DateOutOfRange.Add(csvUser);
+            //}
+
             if (!isEmailCorrect && !isDateCorrect)
             {
                 IncorrectEmailAndDate.Add(csvUser);
-            }
-            else if (isDateCorrect && currentUserDate.Date < minDate.Date)
-            {
-                DateOutOfRange.Add(csvUser);
             }
             else if (!isEmailCorrect)
             {
