@@ -15,7 +15,6 @@ namespace DataMerger.Services
         public List<CsvUser> DateEmpty { get; private set; }
         public List<CsvUser> IncorrectEmail { get; private set; }
         public List<CsvUser> IncorrectEmailAndDate { get; private set; }
-        public List<CsvUser> DateOutOfRange { get; private set; }
         public void DeserializeUsersFromCSV(string mainDirectory)
         {
             string csvDirectory = Path.Combine(mainDirectory, "Files", "users.csv");
@@ -23,7 +22,6 @@ namespace DataMerger.Services
             usersCsv.RemoveAt(0);
 
             IncorrectEmailAndDate = new List<CsvUser>();
-            DateOutOfRange = new List<CsvUser>();
             IncorrectEmail = new List<CsvUser>();
             DateEmpty = new List<CsvUser>();
             UniqueCsvUsers = new List<CsvUser>();
@@ -75,11 +73,6 @@ namespace DataMerger.Services
                         break;
                 }
             }
-
-            //else if (isDateCorrect && currentUserDate.Date < minDate.Date)
-            //{
-            //    DateOutOfRange.Add(csvUser);
-            //}
 
             if (!isEmailCorrect && !isDateCorrect)
             {

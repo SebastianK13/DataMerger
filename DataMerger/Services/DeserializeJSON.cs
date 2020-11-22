@@ -1,5 +1,4 @@
 ﻿using DataMerger.Models;
-using DataMerger.Services.Errors;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -32,9 +31,6 @@ namespace DataMerger.Services
             {
                 InsertUserToRepo(u.Elements().ToList());
             }
-
-            //for testing only
-            //ErrorsChecker.CheckErrors(xmlUsers);
            
             RemoveDuplicatesAndEmpties(xmlUsers);
         }

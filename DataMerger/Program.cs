@@ -14,19 +14,33 @@ namespace DataMerger
         static void Main(string[] args)
         {
             string mainPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-            DeserializeJSON deserializeJSON = new DeserializeJSON();
-            deserializeJSON.DeserializeUsersFromXML(mainPath);
-            DeserializeCSV deserializeCSV = new DeserializeCSV();
-            deserializeCSV.DeserializeUsersFromCSV(mainPath);
-            UserMergedData userMergedData = new UserMergedData();
+            Console.WriteLine("Please insert path to folder where you store data files:");
+            string filesLocation = Console.ReadLine();
 
-            var temp = userMergedData.Encode("bdb294dc-bdec-4d01-96a0-261c6f17f4a5");
 
-            userMergedData.MergeContractorUsers(deserializeJSON.UniqueXmlUsers,
-                deserializeCSV.UniqueCsvUsers);
+            if (File.Exists(filesLocation+"\\phone.xml") && File.Exists(filesLocation+"\\users.csv"))
+            {
+                DeserializeJSON deserializeJSON = new DeserializeJSON();
+                deserializeJSON.DeserializeUsersFromXML(mainPath);
+                DeserializeCSV deserializeCSV = new DeserializeCSV();
+                deserializeCSV.DeserializeUsersFromCSV(mainPath);
+                UserMergedData userMergedData = new UserMergedData();
 
-            userMergedData.MergeFulltimeUsers(deserializeJSON.UniqueXmlUsers,
-                deserializeCSV.UniqueCsvUsers);
+                userMergedData.MergeContractorUsers(deserializeJSON.UniqueXmlUsers,
+                    deserializeCSV.UniqueCsvUsers);
+
+                userMergedData.MergeFulltimeUsers(deserializeJSON.UniqueXmlUsers,
+                    deserializeCSV.UniqueCsvUsers);
+
+                ReportGenerator reportGenerator = new ReportGenerator(userMergedData, deserializeJSON, deserializeCSV);
+                reportGenerator.GenerateOutputs(mainPath);
+
+                Console.WriteLine("Operation success");
+            }
+            else
+            {
+                Console.WriteLine("Operation failed, wrong path, file or files doesn't exist in the directory which was pointed");
+            }
 
             Console.ReadKey();
         }
